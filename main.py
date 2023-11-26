@@ -6,12 +6,12 @@ def generate_random_number(upper_limit):
 
 def main():
     layout = [
-        [sg.Text('Виберіть верхню межу для числа:')],
-        [sg.InputText(key='-UPPER_LIMIT-')],
-        [sg.Button('Підтвердити')],
+        [sg.Text('Виберіть верхню межу для числа:', background_color='black', text_color='white')],
+        [sg.InputText(key='-UPPER_LIMIT-', background_color='lightgrey')],
+        [sg.Button('Підтвердити', button_color=('white', 'black'))],
     ]
 
-    window = sg.Window('Вибір верхньої межі', layout)
+    window = sg.Window('Вибір верхньої межі', layout, background_color='black')
 
     while True:
         event, values = window.read()
@@ -22,20 +22,19 @@ def main():
         try:
             upper_limit = int(values['-UPPER_LIMIT-'])
 
-            # Викликаємо головну програму тільки при коректному введенні верхньої межі
             if upper_limit > 0:
                 window.close()
                 target_number = generate_random_number(upper_limit)
                 attempts = 0
 
                 game_layout = [
-                    [sg.Text(f'Вгадайте число від 1 до {upper_limit}:')],
-                    [sg.InputText(key='-GUESS-')],
-                    [sg.Button('Перевірити'), sg.Button('Вийти')],
-                    [sg.Text('', size=(20, 1), key='-OUTPUT-')]
+                    [sg.Text(f'Вгадайте число від 1 до {upper_limit}:', background_color='black', text_color='white')],
+                    [sg.InputText(key='-GUESS-', background_color='lightgrey')],
+                    [sg.Button('Перевірити', button_color=('white', 'black')), sg.Button('Вийти', button_color=('white', 'black'))],
+                    [sg.Text('', size=(20, 1), key='-OUTPUT-', background_color='black', text_color='white')]
                 ]
 
-                game_window = sg.Window('Вгадай число', game_layout)
+                game_window = sg.Window('Вгадай число', game_layout, background_color='black')
 
                 while True:
                     event, values = game_window.read()
